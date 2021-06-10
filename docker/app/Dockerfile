@@ -1,7 +1,7 @@
 FROM elixir:1.12.0-alpine
 
 RUN apk update \
-    && apk add inotify-tools build-base git ffmpeg ffmpeg-dev npm nodejs file-dev libpng-dev gifsicle optipng libjpeg-turbo-utils librsvg imagemagick postgresql-client wget \
+    && apk add inotify-tools build-base git ffmpeg ffmpeg-dev npm nodejs file-dev libpng-dev gifsicle optipng libjpeg-turbo-utils librsvg imagemagick postgresql-client wget erlang-debugger wxgtk3 erlang-wx \
     && mix local.hex --force \
     && mix local.rebar --force
 

@@ -35,7 +35,11 @@ services:
       - MAILER_ADDRESS=noreply@philomena.local
       - START_ENDPOINT=true
     working_dir: /srv/philomena
+    stdin_open: true
     tty: true
+    ports:
+      - "9000:9000"
+      - "4360:4369"
     volumes:
       - .:/srv/philomena
     depends_on:
