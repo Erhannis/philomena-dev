@@ -40,3 +40,12 @@ Scratch
 Image upload process
   pw/c/image_controller.ex:create, -> p/images.ex:create_image
   
+IEX Debugging
+----
+I spent like...multiple days trying to get debugging to work.  Here's my notes.
+First, follow https://toranbillups.com/blog/archive/2019/04/20/attach-iex-to-running-elixir-inside-docker-container/ .
+It's mostly right.  BUT.  First, use "/bin/sh" instead of "/bin/bash".  And, you ALSO need to add your docker node address to /etc/hosts - so like, if your app is c3f2473a1e@3160c633294f, let's call "3160c633294f" your "node name".  When you `exec` into the docker shell, also run `ifconfig` or `ps a` or w/e and copy the non-trivial ip address.  Call that the "node address".  Now, on your host, open /etc/hosts , and add "[node address]<TAB>[node name]", and save the file.  NOW the iex command ought to connect.
+...BUT I haven't gotten :debugger.start() to work.  So I switched tacks.
+First, I swapped from the alpine linux container to a plain container, while still trying to get the other way working.  Eventually gave up, but haven't switched back.
+Following https://stackoverflow.com/questions/16296753/can-you-run-gui-applications-in-a-linux-docker-container , copied most of that stuff into docker/app/Dockerfile, except the stuff about firefox.  I have the run-development file start the VNC server rather than the Philomena server: x11vnc -forever -usepw -create
+Then once it's started, I VNC in via the IP address reported by the docker container as above, start `xfwm4 &`, then start the philomena server via the command that WAS in the run-development, except with iex, so `iex --sname $name --cookie chocochip -S mix phx.server`, which also gives me an interactive shell.  Running `:debugger.start()` there DOES work!...but I don't see any PIDs or whatever, so further work is likely necessary.

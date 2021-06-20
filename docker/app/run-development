@@ -38,8 +38,12 @@ createdb -h postgres -U postgres philomena_dev && mix ecto.setup_dev && mix rein
 background &
 
 str=`date -Ins | md5sum`
-name=${str:0:10}
+echo str
+echo $str
+#name=${str:0:10}
+name="e2e2ae9ba4"
 
 # Run the application
 #START_WORKER=true exec iex --cookie chocochip --name remote@192.168.1.124 --erl '-kernel inet_dist_listen_min 9000' --erl '-kernel inet_dist_listen_max 9000' -S mix phx.server
-START_WORKER=true exec elixir --sname $name --cookie chocochip -S mix phx.server
+#START_WORKER=true exec elixir --sname $name --cookie chocochip -S mix phx.server
+START_WORKER=true exec x11vnc -forever -usepw -create
