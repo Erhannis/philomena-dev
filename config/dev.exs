@@ -10,7 +10,7 @@ config :philomena, Philomena.Repo, show_sensitive_data_on_connection_error: true
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :philomena, PhilomenaWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: 4000, protocol_options: [idle_timeout: 600_000_000, inactivity_timeout: 600_000_000]],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,

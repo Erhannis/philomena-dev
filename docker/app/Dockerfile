@@ -9,7 +9,7 @@ RUN apt-get update \
 
 
 
-RUN     apt-get install -y x11vnc xvfb xfwm4 dbus-launch
+RUN     apt-get install -y x11vnc xvfb xfwm4 dbus-x11
 RUN     mkdir ~/.vnc
 RUN     x11vnc -storepasswd 4492 ~/.vnc/passwd
 
