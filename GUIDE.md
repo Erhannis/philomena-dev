@@ -48,6 +48,12 @@ It's mostly right.  BUT.  First, use "/bin/sh" instead of "/bin/bash".  And, you
 ...BUT I haven't gotten :debugger.start() to work.  So I switched tacks.
 First, I swapped from the alpine linux container to a plain container, while still trying to get the other way working.  Eventually gave up, but haven't switched back.
 Following https://stackoverflow.com/questions/16296753/can-you-run-gui-applications-in-a-linux-docker-container , copied most of that stuff into docker/app/Dockerfile, except the stuff about firefox.  I have the run-development file start the VNC server rather than the Philomena server: x11vnc -forever -usepw -create
-Then once it's started, I VNC in via the IP address reported by the docker container as above, start `xfwm4 &`, then start the philomena server via `iex -S mix phx.server`, which also gives me an interactive shell.  Running `:debugger.start()` there DOES work!...but I don't see any PIDs or whatever, so further work is likely necessary.  ...Turns out I just don't know how to use the debugger; you gotta do e.g. `:int.ni(Philomena.Images)` in the iex terminal to load the Philomena.Images module into the debugger, or whatever module you want to debug.
+Then once it's started, I VNC in via the IP address reported by the docker container as above, start `xfwm4 &`, then start the philomena server via `iex -S mix phx.server`, which also gives me an interactive shell.  Running `:debugger.start()` there DOES work!...but I don't see any PIDs or whatever, so further work is likely necessary.
+...Turns out I just don't know how to use the debugger:
+You gotta do e.g. `:int.ni(Philomena.Images)` in the iex terminal to load the Philomena.Images module into the debugger, or whatever module you want to debug.
+Check Auto Attach: On Break to make breakpoints act like you (I) expect.
+Step steps into stuff on the current line, Next steps to the next line.
+Up and Down merely LOOK one call up or down the stack trace, they do not e.g. execute until function return.
+Finish executes until the current function returns.
 
 https://github.com/sass/node-sass/releases/download/v5.0.0/linux-x64-64_binding.node
