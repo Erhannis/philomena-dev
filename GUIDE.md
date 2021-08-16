@@ -27,6 +27,8 @@ POST /images - upload an image file, or image link
 Misc
 ----
 I think that the tokens [:index, :new, :create, :edit, :update, :show, :delete] map to various HTTP methods (POST, GET, etc.).  Not sure if it's automatic or what.
+Ecto Changesets are a way of controlling data flowing from external to internal - making sure nobody tries to overwrite fields they shouldn't, etc.
+The X_changeset methods are a way of populating and verifying objects from maps, and you can apply multiple of them to deal with multiple aspects of an object.
 
 
 Tips
@@ -39,7 +41,14 @@ Scratch
 ----
 Image upload process
   pw/c/image_controller.ex:create, -> p/images.ex:create_image
-  
+
+
+Todo
+----
+Catch both uploaded images and scraped images
+Return result over Channel (websocket)
+
+
 IEX Debugging
 ----
 I spent like...multiple days trying to get debugging to work.  Here's my notes.
