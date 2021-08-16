@@ -47,3 +47,5 @@ npm-debug.log
 
 # Sobelow
 .sobelow
+
+nohup.out

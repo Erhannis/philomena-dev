@@ -1,0 +1,18 @@
+<h1>Show Upload</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @upload.name %>
+  </li>
+
+  <li>
+    <strong>Age:</strong>
+    <%= @upload.age %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.upload_path(@conn, :edit, @upload) %></span>
+<span><%= link "Back", to: Routes.upload_path(@conn, :index) %></span>

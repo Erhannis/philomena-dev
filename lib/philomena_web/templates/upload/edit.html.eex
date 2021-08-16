@@ -1,0 +1,5 @@
+<h1>Edit Upload</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.upload_path(@conn, :update, @upload)) %>
+
+<span><%= link "Back", to: Routes.upload_path(@conn, :index) %></span>
