@@ -34,7 +34,7 @@ The X_changeset methods are a way of populating and verifying objects from maps,
 Tips
 ----
 Try hitting enter a bunch in the logs, to mark your place, then doing an action of interest on the site and see what the logs say happened.
-
+If your environment seems corrupted (e.g. errors persist even when you check out a commit that used to work), try "docker-compose down" then "docker volume prune", and try building again.
 
 
 Scratch
